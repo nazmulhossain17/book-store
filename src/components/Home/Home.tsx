@@ -1,6 +1,6 @@
-import Hero from "../../components/Sections/Hero";
+import Hero from "../Sections/Hero";
 
-const Home = () => {
+const Home: React.FC = () => {
   const handleOrderPopup = () => {
     // Your implementation for handling order popup
     console.log("Order popup triggered");

@@ -23,28 +23,40 @@ const Navbar: React.FC = () => {
     <>
       <header className="w-full fixed top-0 left-0 right-0">
         <nav
-          className={`py-4 md:px-8 px-4 bg-white ${
+          className={`py-4 md:px-8 px-4 bg-gradient-to-r from-violet-200 to-lime-100 ${
             isSticky ? "sticky top-0 right-0 left-0 bg-white" : ""
           }`}
         >
           <div className="flex items-center justify-between">
             <div className="font-bold text-2xl cursor-pointer text-black">
-              <a href="#">Logo</a>
+              <Link to="/">Nazmul Book Store</Link>
             </div>
 
             <div className="lg:flex items-center gap-3 hidden text-stone-700">
-              <Link to="/" className="block hover:text-gray-400 py-2 px-4">
+              <Link
+                to="/"
+                className="block hover:text-green-700 py-2 px-4 font-semibold"
+              >
                 Home
               </Link>
-              <a href="#" className="block hover:text-gray-400 py-2 px-4">
+              <Link
+                to="/allbooks"
+                className="block hover:text-green-700 py-2 px-4 font-semibold"
+              >
                 all books
-              </a>
-              <a href="#" className="block hover:text-gray-400 py-2 px-4">
+              </Link>
+              <Link
+                to="/about"
+                className="block hover:text-green-700 py-2 px-4 font-semibold"
+              >
                 about
-              </a>
-              <a href="#" className="block hover:text-gray-400 py-2 px-4">
+              </Link>
+              <Link
+                to="/contact"
+                className="block hover:text-green-700 py-2 px-4 font-semibold"
+              >
                 contact
-              </a>
+              </Link>
             </div>
 
             {/* login */}
