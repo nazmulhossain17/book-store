@@ -102,7 +102,7 @@ const Hero: React.FC<HeroProps> = ({ handleOrderPopup }) => {
                   data-aos="zoom-in"
                   data-aos-once="true"
                   src={imageId}
-                  alt="biryani img"
+                  alt="book img"
                   className="w-[300px] h-[300px] sm:h-[450px] sm:w-[450px] sm:scale-125 object-contain mx-auto mt-14"
                 />
               </div>
