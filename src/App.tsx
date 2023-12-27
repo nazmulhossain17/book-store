@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react";
+import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
+import Hero from "./components/Sections/Hero";
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isSticky, setIsSticky] = useState<boolean>(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleOrderPopup = () => {
+    // Your implementation for handling order popup
+    console.log("Order popup triggered");
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-  }, []);
   return (
     <>
       <Navbar />
+      <Hero handleOrderPopup={handleOrderPopup} />
+      <Footer />
     </>
   );
 }

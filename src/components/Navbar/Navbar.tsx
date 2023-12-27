@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSticky, setIsSticky] = useState<boolean>(false);
 
