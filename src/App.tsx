@@ -1,17 +1,10 @@
-import Footer from "./components/Footer/Footer";
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Sections/Hero";
+import { RouterProvider } from "react-router-dom";
+import router from "./Routes/Routes";
 
 function App() {
-  const handleOrderPopup = () => {
-    // Your implementation for handling order popup
-    console.log("Order popup triggered");
-  };
   return (
     <>
-      <Navbar />
-      <Hero handleOrderPopup={handleOrderPopup} />
-      <Footer />
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }

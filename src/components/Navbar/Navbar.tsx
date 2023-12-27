@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -32,9 +33,9 @@ const Navbar: React.FC = () => {
             </div>
 
             <div className="lg:flex items-center gap-3 hidden text-stone-700">
-              <a href="#" className="block hover:text-gray-400 py-2 px-4">
+              <Link to="/" className="block hover:text-gray-400 py-2 px-4">
                 Home
-              </a>
+              </Link>
               <a href="#" className="block hover:text-gray-400 py-2 px-4">
                 all books
               </a>
@@ -48,9 +49,12 @@ const Navbar: React.FC = () => {
 
             {/* login */}
             <div className="lg:block hidden">
-              <button className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300">
+              <Link
+                to="/login"
+                className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
+              >
                 Sign in
-              </button>
+              </Link>
             </div>
 
             <button
@@ -64,9 +68,9 @@ const Navbar: React.FC = () => {
           {/* mobile devices */}
           {isMenuOpen && (
             <div className="mt-4 bg-orange-400 text-white rounded py-4">
-              <a href="#" className="block hover:text-gray-400 py-2 px-4">
+              <Link to="/" className="block hover:text-gray-400 py-2 px-4">
                 Home
-              </a>
+              </Link>
               <a href="#" className="block hover:text-gray-400 py-2 px-4">
                 all books
               </a>
@@ -76,9 +80,9 @@ const Navbar: React.FC = () => {
               <a href="#" className="block hover:text-gray-400 py-2 px-4">
                 contact
               </a>
-              <button className="block hover:text-gray-400 py-2 px-4">
+              <Link to="/login" className="block hover:text-gray-400 py-2 px-4">
                 Sign in
-              </button>
+              </Link>
             </div>
           )}
         </nav>
