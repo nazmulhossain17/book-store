@@ -1,7 +1,55 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import {
+  signInFailure,
+  signInStart,
+  signInSuccess,
+  userAdded,
+} from "../../redux/user/userSlice";
+import toast from "react-hot-toast";
 
 const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      dispatch(signInStart());
+      const res = await fetch("http://localhost:5000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      console.log(data); // Log the response data
+
+      if (data.success === false) {
+        // Handle unsuccessful login here
+        dispatch(signInFailure(data.message as string));
+        return;
+      }
+      dispatch(signInSuccess(data));
+      dispatch(userAdded(data));
+      toast.success("Login successful");
+      navigate("/");
+    } catch (error) {
+      console.error("Fetch error:", (error as Error).message);
+      dispatch(signInFailure((error as Error).message));
+    }
+  };
+
   return (
     <>
       <section className="h-screen">
@@ -17,15 +65,17 @@ const Login: React.FC = () => {
 
             <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
               <h2 className="text-center text-4xl text-indigo-900 ">SIGN IN</h2>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div>
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
                   </div>
                   <input
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type=""
+                    type="email"
                     placeholder="abc@gmail.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mt-8">
@@ -41,8 +91,10 @@ const Login: React.FC = () => {
                   </div>
                   <input
                     className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                    type=""
+                    type="password"
                     placeholder="Enter your password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                   />
                 </div>
 
