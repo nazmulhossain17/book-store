@@ -6,6 +6,8 @@ import Home from "../components/Home/Home";
 import About from "../Pages/About/About";
 import Contact from "../Pages/Contact/Contact";
 import AllBooks from "../Pages/AllBooks/AllBooks";
+import NotFound from "../Pages/NotFound/NotFound";
+import BookDetails from "../Pages/BookDetails/BookDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +27,16 @@ const router = createBrowserRouter([
         element: <AllBooks />,
       },
       {
+        path: "*",
+        element: <NotFound />,
+      },
+      {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/bookdetails/:id",
+        element: <BookDetails />,
       },
       {
         path: "/login",

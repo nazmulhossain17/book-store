@@ -1,4 +1,5 @@
 import Hero from "../Sections/Hero";
+import Sectionz from "../Sections/Sectionz";
 
 const Home: React.FC = () => {
   const handleOrderPopup = () => {
@@ -8,6 +9,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Hero handleOrderPopup={handleOrderPopup} />
+      <Sectionz />
     </>
   );
 };
