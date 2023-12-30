@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  deleteUserFailure,
+  deleteUserSuccess,
+  signOutUserFailure,
+  signOutUserStart,
+  signOutUserSuccess,
+} from "../../redux/user/userSlice";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isSticky, setIsSticky] = useState<boolean>(false);
+  const { currentUser } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,6 +30,35 @@ const Navbar: React.FC = () => {
 
     window.addEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch("http://localhost:5000/api/v1/auth/log-out", {
+        method: "GET",
+        credentials: "include", // Include credentials (cookies) in the request
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+
+      // Clear the access token on the client side (assuming you're using cookies)
+      document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
+
   return (
     <>
       <header className="w-full fixed top-0 left-0 right-0">
@@ -60,13 +100,33 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* login */}
+
             <div className="lg:block hidden">
-              <Link
-                to="/login"
-                className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
-              >
-                Sign in
-              </Link>
+              {currentUser ? (
+                <>
+                  <span
+                    onClick={handleLogOut}
+                    className="px-4 py-2 mr-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
+                  >
+                    Create Book
+                  </span>
+                  <span
+                    onClick={handleLogOut}
+                    className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
+                  >
+                    Sign out
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
+                  >
+                    Sign in
+                  </Link>
+                </>
+              )}
             </div>
 
             <button

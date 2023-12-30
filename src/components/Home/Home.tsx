@@ -1,3 +1,4 @@
+import FrontBooks from "../Sections/FrontBooks";
 import Hero from "../Sections/Hero";
 import Sectionz from "../Sections/Sectionz";
 
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
     <>
       <Hero handleOrderPopup={handleOrderPopup} />
       <Sectionz />
+      <FrontBooks />
     </>
   );
 };
