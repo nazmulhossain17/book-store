@@ -6,6 +6,7 @@ interface ProductItemProps {
     title: string;
     image: string;
     author: string;
+    genre: string;
     price: number;
     description: string;
     // Add more properties as needed
@@ -22,9 +23,7 @@ const Demo: React.FC<ProductItemProps> = ({ product }) => {
             <h1 className="text-xl font-semibold">{product?.title}</h1>
           </Link>
           <p>Rating: {product?.author || "N/A"}</p>
-          <p className="text-sm">
-            Availability: {product?.price ? "In stock" : "Out of stock"}
-          </p>
+          <p className="text-sm">genre: {product?.genre}</p>
           <p className="text-2xl">Price: ${product?.price}</p>
           {/* <button
             onClick={() => handleAddProduct(product)}

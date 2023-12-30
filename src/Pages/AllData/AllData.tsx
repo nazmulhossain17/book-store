@@ -25,7 +25,10 @@ const AllData: React.FC<ProductItemProps> = ({ product }) => {
         </Link>
         <h1 className="text-xl font-semibold mt-2 md:mt-0">{product?.title}</h1>
         <p className="mt-1">Author: {product?.author}</p>
-        <p className="text-sm">Price: ${product?.price}</p>
+        <p className="mt-1">genre: {product?.genre}</p>
+        <p className="text-sm">
+          Price: $<b>{product?.price}</b>
+        </p>
         <br />
         <button className="px-2 py-1 border border-orange-600 rounded-2xl text-gray-600 hover:bg-red-400 hover:text-white w-full transition-all duration-300">
           Buy
