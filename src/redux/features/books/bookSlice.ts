@@ -1,3 +1,4 @@
+// bookSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductState {
@@ -9,7 +10,7 @@ interface ProductState {
 const initialState: ProductState = {
   status: false,
   priceRange: 1000,
-  selectedGenres: [],
+  selectedGenres: [], // Make sure to include selectedGenres in the initial state
 };
 
 const bookSlice = createSlice({
@@ -23,15 +24,23 @@ const bookSlice = createSlice({
       state.priceRange = action.payload;
     },
     toggleGenre: (state, action: PayloadAction<string>) => {
-      const genre = action.payload.toLowerCase();
+      const genre = action.payload;
       if (state.selectedGenres.includes(genre)) {
-        state.selectedGenres = state.selectedGenres.filter((g) => g !== genre);
+        // Remove genre if already selected
+        state.selectedGenres = state.selectedGenres.filter(
+          (selectedGenre) => selectedGenre !== genre
+        );
       } else {
+        // Add genre if not selected
         state.selectedGenres.push(genre);
       }
+    },
+    clearFilters: (state) => {
+      state.selectedGenres = []; // Clear selectedGenres array
     },
   },
 });
 
-export const { toggleState, setPriceRange, toggleGenre } = bookSlice.actions;
+export const { toggleState, setPriceRange, toggleGenre, clearFilters } =
+  bookSlice.actions;
 export default bookSlice.reducer;

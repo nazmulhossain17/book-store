@@ -4,7 +4,8 @@ import { useGetProductsQuery } from "../../redux/api/apiSlice";
 import {
   setPriceRange,
   toggleState,
-  toggleGenre, // Import the new action
+  toggleGenre,
+  clearFilters, // Import the new action
 } from "../../redux/features/books/bookSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import AllData from "../AllData/AllData";
@@ -23,6 +24,10 @@ const AllBooks: React.FC = () => {
     dispatch(toggleGenre(genre));
   };
 
+  const handleClearFilters = () => {
+    dispatch(clearFilters());
+  };
+
   const { data, isLoading, error } = useGetProductsQuery();
   const [searchTerm, setSearchTerm] = React.useState<string>("");
 
@@ -37,10 +42,10 @@ const AllBooks: React.FC = () => {
   const products = data?.products || [];
   const filteredProducts = products.filter(
     (product) =>
-      (searchTerm === "" || // Include search term check
+      (searchTerm === "" ||
         product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         product.author.toLowerCase().includes(searchTerm.toLowerCase())) &&
-      (selectedGenres.length === 0 || // Include selectedGenres check
+      (selectedGenres.length === 0 ||
         selectedGenres.some((genre) =>
           product.genre.toLowerCase().includes(genre)
         ))
@@ -75,6 +80,12 @@ const AllBooks: React.FC = () => {
               <span>{genre}</span>
             </label>
           ))}
+          <button
+            onClick={handleClearFilters}
+            className="bg-red-500 text-white px-4 py-2 mt-3"
+          >
+            Clear Filters
+          </button>
         </div>
       </div>
       <div className="col-span-9 grid grid-cols-4 gap-10 pb-20">

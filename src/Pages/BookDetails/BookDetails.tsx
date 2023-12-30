@@ -24,6 +24,8 @@ const BookDetails: React.FC = () => {
     // dispatch(addToCart(selectedProduct));
     toast.success("Product Added!");
   };
+  const publicationDate = new Date(product?.result.createdAt);
+  const formattedDate = publicationDate.toLocaleDateString();
 
   return (
     <>
@@ -40,6 +42,7 @@ const BookDetails: React.FC = () => {
           <p className="text-xl">Author: {product?.result.author}</p>
           <p className="text-lg mt-1">{product?.result.description}</p>
           <p className="text-lg mt-1">Price: ${product?.result.price}</p>
+          <p className="text-lg mt-1">published: {formattedDate}</p>
           <button
             onClick={() => handleAddProduct(product)}
             className="px-6 py-2 mt-3 transition ease-in duration-200 uppercase rounded-2xl hover:bg-purple-800 hover:text-white border-2 border-purple-900 focus:outline-none"
