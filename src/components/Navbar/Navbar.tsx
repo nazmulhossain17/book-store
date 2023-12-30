@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
       dispatch(signOutUserStart());
       const res = await fetch("http://localhost:5000/api/v1/auth/log-out", {
         method: "GET",
-        credentials: "include", // Include credentials (cookies) in the request
+        credentials: "include",
       });
 
       if (!res.ok) {
@@ -50,7 +50,6 @@ const Navbar: React.FC = () => {
         return;
       }
 
-      // Clear the access token on the client side (assuming you're using cookies)
       document.cookie = "access_token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
 
       dispatch(deleteUserSuccess(data));

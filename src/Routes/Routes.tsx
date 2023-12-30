@@ -8,6 +8,8 @@ import Contact from "../Pages/Contact/Contact";
 import AllBooks from "../Pages/AllBooks/AllBooks";
 import NotFound from "../Pages/NotFound/NotFound";
 import BookDetails from "../Pages/BookDetails/BookDetails";
+import Create from "../components/Create/Create";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/create-book",
+        element: (
+          <PrivateRoute>
+            <Create></Create>
+          </PrivateRoute>
+        ),
       },
     ],
   },
