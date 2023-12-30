@@ -103,12 +103,12 @@ const Navbar: React.FC = () => {
             <div className="lg:block hidden">
               {currentUser ? (
                 <>
-                  <span
-                    onClick={handleLogOut}
+                  <Link
+                    to="/create-book"
                     className="px-4 py-2 mr-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
                   >
                     Create Book
-                  </span>
+                  </Link>
                   <span
                     onClick={handleLogOut}
                     className="px-4 py-2 border border-orange-600 rounded-sm text-gray-600 hover:bg-red-400 hover:text-white transition-all duration-300"
