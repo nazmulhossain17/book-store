@@ -32,7 +32,7 @@ const Update: React.FC = () => {
     console.log("Deleting book with ID:", product.result._id);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/books/update-book/${product.result._id}`,
+        `https://nazmul-book-store-api.vercel.app/api/books/update-book/${product.result._id}`,
         {
           method: "PUT",
           headers: {

@@ -39,7 +39,7 @@ const BookDetails: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/books/delete-book/${product.result._id}`,
+        `https://nazmul-book-store-api.vercel.app/api/books/delete-book/${product.result._id}`,
         {
           method: "DELETE",
           headers: {

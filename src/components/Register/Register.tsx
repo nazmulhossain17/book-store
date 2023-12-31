@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/v1/auth/create-user",
+        "https://nazmul-book-store-api.vercel.app/api/v1/auth/create-user",
         data,
         {
           headers: {
