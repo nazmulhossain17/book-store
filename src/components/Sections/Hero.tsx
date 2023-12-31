@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Book1 from "../../assets/books/book2.jpg";
-import Book2 from "../../assets/books/book1.jpg";
+import Book2 from "../../assets/books/max.jpg";
 import Book3 from "../../assets/books/book3.jpg";
+import { Link } from "react-router-dom";
 // import Vector from "../../assets/books/blue-pattern.png";
 
 interface ImageItem {
@@ -17,14 +18,14 @@ const ImageList: ImageItem[] = [
     img: Book1,
     title: "His Life will forever be Changed",
     description:
-      "lorem His Life will forever be Changed dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Do you know what line I have heard a thousand times? Everything you need is inside of you What the heck? I need so many things! This is a ridiculous declaration! Inside me where, exactly And one day someone said to me “everything you need is inside of you” and it hit me. It hit me hard.",
   },
   {
     id: 2,
     img: Book2,
-    title: "Who's there",
+    title: "Max Payne 3",
     description:
-      "Who's there lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Bridging the gaps between Max Payne, Max Payne 2: The Fall of Max Payne and 2012's critically acclaimed Max Payne 3 from Rockstar Games, Max Payne 3: The Complete Series reveals formerly hidden moments in Max's life story, from a young cop on the rise to the man whose battles with the criminal underworld cost him everything he ever held close. Max is now more alone than ever - and this time, he may not even be able to rely on himself.",
   },
   {
     id: 3,
@@ -87,12 +88,13 @@ const Hero: React.FC<HeroProps> = ({ handleOrderPopup }) => {
                 {description}
               </p>
               <div>
-                <button
+                <Link
+                  to="/allbooks"
                   onClick={handleOrderPopup}
-                  className="bg-gradient-to-r from-purple-400 to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-sm"
+                  className=" bg-gradient-to-r from-purple-400 to-secondary hover:scale-105 duration-200 text-white py-3 px-6 rounded-sm"
                 >
                   See All Books
-                </button>
+                </Link>
               </div>
             </div>
             {/* Image section */}

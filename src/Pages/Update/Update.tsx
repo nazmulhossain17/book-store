@@ -57,9 +57,9 @@ const Update: React.FC = () => {
   };
   return (
     <>
-      <div className=" md:w-1/2 mx-auto">
-        <h2 className="text-4xl text-neutral-700 font-semibold ">
-          update your Book
+      <div className=" md:w-1/2 mx-auto mb-20 mt-20">
+        <h2 className="text-4xl mb-12 text-blue-700 font-semibold ">
+          Update your Book
         </h2>
         <form
           className="max-w-md mx-2 mb-9 mt-7"
@@ -130,7 +130,7 @@ const Update: React.FC = () => {
 
           <button
             type="submit"
-            className="px-2 py-1 border border-lime-600 rounded-2xl text-gray-600 hover:bg-green-800 hover:text-white w-full transition-all duration-300"
+            className="px-2 py-1 border border-blue-600  text-dark hover:bg-blue-800 hover:text-slate-200 w-full transition-all duration-300"
           >
             Update
           </button>
