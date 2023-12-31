@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
   const handleLogOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch("http://localhost:5000/api/v1/auth/log-out", {
+      const res = await fetch("https://nazmul-book-store-api.vercel.app/api/v1/auth/log-out", {
         method: "GET",
         credentials: "include",
       });
