@@ -10,6 +10,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import BookDetails from "../Pages/BookDetails/BookDetails";
 import Create from "../components/Create/Create";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Update from "../Pages/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/bookdetails/:id",
         element: <BookDetails />,
+      },
+      {
+        path: "/updatebook/:id",
+        element: <Update />,
       },
       {
         path: "/login",
